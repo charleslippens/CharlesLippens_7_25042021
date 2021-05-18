@@ -6,15 +6,23 @@ Avoir Node.js, Vue CLI et MySQL installés localement sur la machine.
 ### Backend :
 
 Clonez ce repository,
-Copiez le fichier .env dans backend en remplaçant les valeurs par défaut pour accéder à la BDD,
+Copiez le fichier .env dans backend en remplaçant les valeurs par défaut pour accéder à la BDD:
+
+DATABASE_URL=mysql://username:password@localhost:port/database_name
+PORT=3000
+
+#JWT APP
+JWT_SECRET_TOKEN="chaine de caractères aléatoires"
+
+
 A partir du dossier backend, exécutez npm install puis nodemon server,
 Le serveur doit fonctionner sur localhost avec le port par défaut 3000.
 
 
-### Base de données :
+### Tables Base de données :
 
-Vérifier que les informations du fichier config.json dans le dossier config sont correctes et correspondent à ceux de la BDD,
-Exécutez sequelize db:migrate pour intégrer les modèles créés dans la BDD.
+
+Exécutez sequelize db:migrate pour intégrer les fichiers de migration/modèles créés dans la BDD.
 
 
 ### Frontend :
