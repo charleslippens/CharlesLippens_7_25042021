@@ -29,3 +29,6 @@ Exécutez sequelize db:migrate pour intégrer les fichiers de migration/modèles
 
 A partir du dossier frontend et du sous-dossier vue-groupomania, exécutez npm install puis npm run serve,
 Le frontend de l'application doit fonctionner sur localhost avec le port par défaut 8080.
+
+
+Accèder au site sur http://localhost:8080/
