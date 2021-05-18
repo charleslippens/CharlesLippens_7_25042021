@@ -1,10 +1,10 @@
 // Chemin d'accès pour le fichier .env
 require("dotenv").config({ path: "./config/.env" });
 
-// Permet d'importer le package http de Node
+// importer le package http de Node
 const http = require("http");
 
-// Permet d'importer l'application
+// importer l'application
 const app = require("./app");
 
 // Indique à l'application sur quel port elle doit être lancée

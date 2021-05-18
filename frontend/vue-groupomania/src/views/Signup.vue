@@ -1,51 +1,49 @@
 <template>
-	<div class="home">
-		<img class="home__title" src="../assets/iconLong450.png" alt="Logo de Groupomania" />
+	<div class="img1">
+		<div class="home">
+			<img class="home__title" src="../assets/iconLong450.png" alt="Logo de Groupomania" />
 
-		<div class="home__display">
-			<div class="home__display__picture">
-				<img
-					class="home__display__picture"
-					src="../assets/bottomImage450.png"
-					alt="Représentation de personnes qui discutent via un chat"
-				/>
+			<div class="home__display">
+				<form @submit.prevent="signup" class="home__display__form">
+					<h1 class="home__display__form__title">S'inscrire</h1>
+
+					<div class="home__display__form__input">
+						<label for="username" class="home__display__form__input__label"
+							>Pseudo</label
+						>
+						<input type="text" v-model="username" id="username" name="username" />
+					</div>
+
+					<div class="home__display__form__input">
+						<label for="mail" class="home__display__form__input__label">Email</label>
+						<input type="email" v-model="email" id="mail" name="mail" />
+					</div>
+
+					<div class="home__display__form__input">
+						<label for="password" class="home__display__form__input__label"
+							>Mot de passe</label
+						>
+						<input type="password" v-model="password" id="password" name="password" />
+					</div>
+
+					<button class="home__display__form__button">Inscription</button>
+
+					<p>
+						Vous avez déjà un compte ?
+						<router-link to="/" class="home__display__form__login"
+							>Se connecter</router-link
+						>
+					</p>
+				</form>
 			</div>
-
-			<form @submit.prevent="signup" class="home__display__form">
-				<h1 class="home__display__form__title">S'inscrire</h1>
-
-				<div class="home__display__form__input">
-					<label for="username" class="home__display__form__input__label">Pseudo</label>
-					<input type="text" v-model="username" id="username" name="username" />
-				</div>
-
-				<div class="home__display__form__input">
-					<label for="mail" class="home__display__form__input__label">Email</label>
-					<input type="email" v-model="email" id="mail" name="mail" />
-				</div>
-
-				<div class="home__display__form__input">
-					<label for="password" class="home__display__form__input__label"
-						>Mot de passe</label
-					>
-					<input type="password" v-model="password" id="password" name="password" />
-				</div>
-
-				<button class="home__display__form__button">Inscription</button>
-
-				<p>
-					Vous avez déjà un compte ?
-					<router-link to="/" class="home__display__form__login"
-						>Se connecter</router-link
-					>
-				</p>
-			</form>
 		</div>
 	</div>
 </template>
 
 <script>
 import axios from "axios";
+import { Notyf } from "notyf";
+import "notyf/notyf.min.css";
 
 export default {
 	name: "Signup",
@@ -56,8 +54,17 @@ export default {
 			password: "",
 		};
 	},
+	created() {
+		this.notyf = new Notyf({
+			duration: 4000,
+			position: {
+				x: "center",
+				y: "bottom",
+			},
+		});
+	},
 	methods: {
-		// Permet de s'inscrire et de basculer sur la page de connexion
+		// s'inscrire et de basculer sur la page de connexion
 		signup() {
 			axios
 				.post("http://localhost:3000/api/user/signup", {
@@ -66,13 +73,14 @@ export default {
 					password: this.password,
 				})
 				.then(() => {
-					alert("Votre compte a bien été créé, veuillez vous connecter.");
+					this.notyf.success(
+						"Votre compte a bien été créé ! A présent, veuillez vous connecter."
+					);
 					this.$router.push("/");
 				})
 				.catch((error) => {
 					const msgerror = error.response.data;
-					// alert(msgerror.error)
-					this.error(msgerror.error);
+					this.notyf.error(msgerror.error);
 				});
 		},
 	},
@@ -80,6 +88,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.img1 {
+	background-image: url("../assets/business.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-size: cover, contain;
+	height: 100vh;
+}
 .home {
 	&__title {
 		@media (max-width: 930px) {
@@ -110,6 +125,7 @@ export default {
 		}
 
 		&__form {
+			background: #c7c7c7;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -148,16 +164,15 @@ export default {
 				outline-style: none;
 				&:hover,
 				&:focus {
-					border: 3px solid #190ae6;
-					color: #190ae6;
+					border: 3px solid #ff6363;
+					color: #ff6363;
 					cursor: pointer;
 				}
 			}
 			&__login {
 				font-weight: bold;
 				text-decoration: none;
-				color: #190ae6;
-				// color: #ff6363;
+				color: black;
 			}
 		}
 	}
