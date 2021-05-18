@@ -1,59 +1,51 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import auth from '../middleware/auth'
-import user from '../middleware/user'
+import { createRouter, createWebHashHistory } from "vue-router";
+import Home from "../views/Home.vue";
+import auth from "../middleware/auth";
 
-
-import VueRouteMiddleware from 'vue-route-middleware'
+import VueRouteMiddleware from "vue-route-middleware";
 
 const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home,
-    meta: {
-      middleware: user
-    }
-  },
-  {
-    path: '/signup',
-    name: 'Signup',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Signup.vue'),
-    meta: {
-      middleware: user
-    }
-  },
-  {
-    path: '/post',
-    name: 'Post',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Post.vue'),
-    meta: {
-      middleware: auth
-    }
-  },
-  {
-    path: '/profile',
-    name: 'Profile',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Profile.vue'),
-    meta: {
-      middleware: auth
-    }
-  },
-  {
+	{
+		path: "/",
+		name: "Home",
+		component: Home,
+	},
+	{
+		path: "/signup",
+		name: "Signup",
+		component: () => import(/* webpackChunkName: "about" */ "../views/Signup.vue"),
+	},
+	{
+		path: "/post",
+		name: "Post",
+		component: () => import(/* webpackChunkName: "about" */ "../views/Post.vue"),
+		meta: {
+			middleware: auth,
+		},
+	},
+	{
+		path: "/profile",
+		name: "Profile",
+		component: () => import(/* webpackChunkName: "about" */ "../views/Profile.vue"),
+		meta: {
+			middleware: auth,
+		},
+	},
+	{
 		path: "/users",
 		name: "Users",
 		component: () => import(/* webpackChunkName: "about" */ "../views/Users.vue"),
 		meta: {
-			middleware: auth
+			middleware: auth,
 		},
 	},
-]
+];
 
 const router = createRouter({
-  history: createWebHashHistory(),
-  routes
-})
+	history: createWebHashHistory(),
+	routes,
+});
 
-router.beforeEach(VueRouteMiddleware())
+router.beforeEach(VueRouteMiddleware());
 
-export default router
+export default router;
