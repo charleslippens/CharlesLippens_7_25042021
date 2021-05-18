@@ -11,7 +11,7 @@
                 </div>
             </div>
 
-            <button @click="deleteAccount" class="modaleBloc__card__button">Oui, je souhaite supprimer mon compte</button>
+            <button @click="deleteAccount" class="modaleBloc__card__button">Oui, je supprime mon compte</button>
         </div>
     </div>
 </template>

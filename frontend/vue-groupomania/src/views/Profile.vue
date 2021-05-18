@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<Nav/>
-		<div class="bg">
+		<div>
 			<h1 v-if="user">Bienvenue {{ user.username }} !</h1>
 
 			<div class="profile">
@@ -68,7 +68,7 @@
 			}); 
 		},
 		methods: {
-			// Afficher les informations de profil
+			// Permet d'afficher les informations de profil
 			displayProfile() {
 				const userId = localStorage.getItem('userId');
 
@@ -87,7 +87,7 @@
 				})
 			},
 
-			// Modifier la photo de profil
+			// Permet de modifier la photo de profil
 			uploadFile () {
 				this.$refs.fileUpload.click()
 			},
@@ -116,7 +116,7 @@
 				})
 			},
 
-			// Affiche la boîte modale pour la suppression du compte
+			// Permet d'afficher la boîte modale pour la suppression du compte
 			displayModale() {
 				this.revele = !this.revele
 			}
@@ -125,12 +125,6 @@
 </script>
 
 <style scoped lang="scss">
-.bg{background: rgb(236, 231, 231);
-padding: 0;
-  margin: 0;
-  width: 100%;
-  min-height: 100vh;
-}
 	h1, h2 {
 	margin-top: 2rem;
 	}
@@ -141,7 +135,7 @@ padding: 0;
 		min-width: 40%;
 		max-width: 60%;
 		margin: 3rem auto;
-		background: #c7c7c7;
+		background: #929191;
 		border-radius: 25px;
 		@media (max-width: 500px) {
 			min-width: 80%;
@@ -160,7 +154,7 @@ padding: 0;
 			}
 			&__modify__btnInvisible {
 			border: none;
-			background-color: #c7c7c7;
+			background-color: #929191;
 			color: #3f3d56;
 				&:hover, &:focus {
 					color: white;

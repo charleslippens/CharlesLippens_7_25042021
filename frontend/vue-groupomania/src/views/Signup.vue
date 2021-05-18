@@ -57,7 +57,7 @@
             });
         },
         methods: {
-            // s'inscrire et de basculer sur la page de connexion 
+            // Permet de s'inscrire et de basculer sur la page de connexion 
             signup() {
                 axios.post('http://localhost:3000/api/user/signup', {
                     username: this.username,

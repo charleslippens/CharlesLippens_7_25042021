@@ -170,7 +170,7 @@
             });
         },  
         methods: {
-            // créer un nouveau message
+            // Permet de créer un nouveau message
             uploadFile() {
                 this.$refs.fileUpload.click()
             },
@@ -200,7 +200,7 @@
             },
             
 
-            // afficher tous les messages
+            // Permet d'afficher tous les messages
             displayPost() {
                 axios.get('http://localhost:3000/api/post', {
                     headers: {
@@ -218,14 +218,14 @@
                 })
             },
 
-            // afficher la date de publication au bon format
+            // Permet d'afficher la date de publication au bon format
             dateFormat(date){
                 if (date) {
                     return moment(String(date)).format('DD/MM/YYYY')
                 }
             },
 
-            // afficher le champ pour modifier un message
+            // Permet d'afficher le champ pour modifier un message
             displayModifyPost(id) {
                 const postId = id;
 
@@ -262,7 +262,7 @@
                 }
             },
 
-            // modifier un message
+            // Permet de modifier un message
             modifyPost(id) {
                 const postId = id;
 
@@ -285,7 +285,7 @@
                 })
             },
 
-            // supprimer un message
+            // Permet de supprimer un message
             deletePost(id) {
                 const postId = id;
                
@@ -306,7 +306,7 @@
             
             
 
-            // afficher le champ pour créer un nouveau commentaire
+            // Permet d'afficher le champ pour créer un nouveau commentaire
             diplayCreateComment(id) {
                 const postId = id;
 
@@ -324,7 +324,7 @@
                 }
             },
 
-            // créer un nouveau commentaire
+            // Permet de créer un nouveau commentaire
             createComment(id) {
                 const postId = id;
 
@@ -344,7 +344,7 @@
                 })
             },
 
-            // afficher les commentaires d'un message
+            // Permet d'afficher les commentaires d'un message
             displayComment(id) {
                 this.showComment = !this.showComment
 
@@ -365,7 +365,7 @@
                 })
             },
 
-            // supprimer un commentaire
+            // Permet de supprimer un commentaire
             deleteComment(id) {
                 const commentId = id;
 
@@ -389,17 +389,13 @@
 
 
 <style scoped lang="scss">
-.bg{background: rgb(228, 225, 225);
-background-size: cover, contain;
-height: 100vh;
-
-;}
-
-.invisible {
-    display: none;
+.bg{background: rgb(236, 231, 231);}
+.post{background-color:grey};
+    .invisible {
+        display: none;
     }
     .newPost {
-        background: #c7c7c7;
+        background: #929191;
         border-radius: 25px;
         margin: auto;
         margin-top: 2rem;
@@ -448,7 +444,7 @@ height: 100vh;
                     align-items: center;
                     color: #3f3d56;
                     border: none;
-                    background-color:#c7c7c7;
+                    background-color:#929191;
                     &:hover, &:focus {
                         color: white;
                     }
@@ -474,10 +470,10 @@ height: 100vh;
         display: flex;
         flex-direction: column;
         &__item {
-            background: #c7c7c7;
+            background: grey;
             display: flex;
             flex-direction: column;
-            border: 2px solid #c7c7c7;
+            border: 2px solid grey;
             border-radius: 25px;
             margin: auto;
             margin-top: 2rem;
@@ -617,7 +613,7 @@ height: 100vh;
         display: flex;
         flex-direction: column;
         &__item {
-            background: #c7c7c7;
+            background: grey;
             display: flex;
             flex-direction: column;
             border: 2px solid grey;
@@ -675,7 +671,7 @@ height: 100vh;
                 width: 80%;
             }
             &__form {
-                background: #c7c7c7;
+                background: #929191;
                 display: flex;
                 align-items: center;
                 justify-content: center;

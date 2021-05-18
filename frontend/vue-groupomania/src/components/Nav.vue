@@ -82,7 +82,7 @@ export default {
 				});
 		},
 
-		// Afficher la boîte modale de déconnexion
+		// Permet d'afficher la boîte modale de déconnexion
 		displayModale() {
 			this.revele = !this.revele;
 		},

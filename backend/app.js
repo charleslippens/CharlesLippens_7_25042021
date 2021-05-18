@@ -27,7 +27,6 @@ const userRoutes = require("./routes/user");
 const postRoutes = require("./routes/post");
 const commentRoutes = require("./routes/comment");
 const adminRoutes = require("./routes/admin");
-const testRoutes = require("./routes/user");
 
 // Transforme le corps de la requête en objet JS
 app.use(bodyParser.urlencoded({ extended: true }));

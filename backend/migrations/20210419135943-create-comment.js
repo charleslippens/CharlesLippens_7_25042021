@@ -8,10 +8,14 @@ module.exports = {
 				autoIncrement: true,
 				primaryKey: true,
 				type: Sequelize.INTEGER,
+				onDelete: "cascade",
+				onUpdate: "cascade",
 			},
 			postId: {
 				type: Sequelize.INTEGER,
 				allowNull: false,
+				onDelete: "cascade",
+				onUpdate: "cascade",
 				references: {
 					model: "Posts",
 					key: "id",
@@ -20,6 +24,8 @@ module.exports = {
 			userId: {
 				type: Sequelize.INTEGER,
 				allowNull: false,
+				onDelete: "cascade",
+				onUpdate: "cascade",
 				references: {
 					model: "Users",
 					key: "id",
