@@ -7,8 +7,6 @@ module.exports = (sequelize, DataTypes) => {
 		static associate(models) {
 			models.Post.belongsTo(models.User, {
 				foreignKey: "userId",
-				onDelete: "cascade",
-				onUpdate: "cascade",
 			});
 			models.Post.hasMany(models.Comment);
 		}

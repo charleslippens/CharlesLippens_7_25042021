@@ -2,7 +2,7 @@
 const jwt = require("jsonwebtoken");
 const db = require("../models/index");
 
-// créer un nouveau commentaire
+// Permet de créer un nouveau commentaire
 exports.createComment = (req, res, next) => {
 	const token = req.headers.authorization.split(" ")[1];
 	const decodedToken = jwt.verify(token, process.env.JWT_SECRET_TOKEN);
@@ -33,7 +33,7 @@ exports.createComment = (req, res, next) => {
 		.catch((error) => res.status(500).json({ error: "Oops, une erreur s'est produite !" }));
 };
 
-// afficher tous les commentaires
+// Permet d'afficher tous les commentaires
 exports.getAllComments = (req, res, next) => {
 	db.Comment.findAll({
 		order: [
@@ -61,7 +61,7 @@ exports.getAllComments = (req, res, next) => {
 		});
 };
 
-// supprimer un commentaire
+// Permet de supprimer un commentaire
 exports.deleteComment = (req, res, next) => {
 	db.Comment.findOne({
 		attributes: ["id"],

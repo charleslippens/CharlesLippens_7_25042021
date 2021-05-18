@@ -16,8 +16,6 @@ module.exports = {
 					model: "Posts",
 					key: "id",
 				},
-				onDelete: "cascade",
-				onUpdate: "cascade",
 			},
 			userId: {
 				type: Sequelize.INTEGER,
@@ -26,8 +24,6 @@ module.exports = {
 					model: "Users",
 					key: "id",
 				},
-				onDelete: "cascade",
-				onUpdate: "cascade",
 			},
 			content: {
 				type: Sequelize.STRING,

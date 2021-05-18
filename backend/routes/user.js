@@ -4,10 +4,10 @@ const express = require("express");
 // Crée un routeur
 const router = express.Router();
 
-// importer le controller utilisateurs
+// Permet d'importer le controller utilisateurs
 const userCtrl = require("../controllers/user");
 
-// importer le middleware auth
+// Permet d'importer le middleware auth
 const auth = require("../middleware/auth");
 const multer = require("../middleware/multer-config");
 
@@ -18,5 +18,5 @@ router.get("/:id", auth, userCtrl.getUserProfile);
 router.put("/:id", auth, multer, userCtrl.modifyUserProfile);
 router.delete("/:id", auth, userCtrl.deleteAccount);
 
-// exporter le router
+// Permet d'exporter le router
 module.exports = router;

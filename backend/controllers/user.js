@@ -12,13 +12,13 @@ const regexEmail = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
 
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,20}/;
 
-// créer un nouvel utilisateur
+// Permet de créer un nouvel utilisateur
 exports.signup = (req, res, next) => {
 	var username = req.body.username;
 	var email = req.body.email;
 	var password = req.body.password;
 
-	// vérifier que tous les champs sont complétés
+	// Permet de vérifier que tous les champs sont complétés
 	if (
 		email == null ||
 		email == "" ||
@@ -47,7 +47,7 @@ exports.signup = (req, res, next) => {
 		});
 	}
 
-	// vérifier que l'utilisateur que l'on souhaite créer n'existe pas déjà
+	// Permet de vérifier que l'utilisateur que l'on souhaite créer n'existe pas déjà
 	db.User.findOne({
 		attributes: ["username" || "email"],
 		where: {

@@ -3,11 +3,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
+// const cors = require('cors');
 
-// accéder au chemin du système de fichiers
+// Permet d'accéder au chemin du système de fichiers
 const path = require("path");
 
-// créer l'application express
+// Permet de créer l'application express
 const app = express();
 
 // Middleware CORS
@@ -21,7 +22,7 @@ app.use((req, res, next) => {
 	next();
 });
 
-// importer les routers user, post
+// Permet d'importer les routers user, post
 const userRoutes = require("./routes/user");
 const postRoutes = require("./routes/post");
 const commentRoutes = require("./routes/comment");
@@ -32,22 +33,22 @@ const testRoutes = require("./routes/user");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// configurer les en-têtes HTTP de manière sécurisée
+// Permet de configurer les en-têtes HTTP de manière sécurisée
 app.use(helmet());
 
-// valider les entrées utilisateur et de remplacer les caractères interdits par "_"
+// Permet de valider les entrées utilisateur et de remplacer les caractères interdits par "_"
 app.use(
 	mongoSanitize({
 		replaceWith: "_",
 	})
 );
 
-// accéder aux routes pour les utilisateurs, les publications et les images
+// Permet d'accéder aux routes pour les utilisateurs, les publications et les images
 app.use("/images", express.static(path.join(__dirname, "images")));
 app.use("/api/user", userRoutes);
 app.use("/api/post", postRoutes);
 app.use("/api/comment", commentRoutes);
 app.use("/api/admin", adminRoutes);
 
-// exporter l'application express pour pouvoir y accéder depuis les autres fichiers du projet
+// Permet d'exporter l'application express pour pouvoir y accéder depuis les autres fichiers du projet
 module.exports = app;
