@@ -11,9 +11,9 @@
 						<p class="title font-weight-bold">Créé le :{{ user.createdAt }}</p>
 						<span class="title font-weight-bold">username : {{ user.username }}</span>
 						<p class="title font-weight-bold">Email : {{ user.email }}</p>
-						<p class="users-list_delete-link" @click="deleteUser(user.id)">
-							<i class="fas fa-user-times"></i>Supprimer
-						</p>
+						<button class="users-list_delete-link" @click="deleteUser(user.id)">
+							<i class="far fa-trash-alt"></i>Supprimer
+						</button>
 						<br />
 					</div>
 				</div>
