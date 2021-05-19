@@ -1,6 +1,7 @@
 // Imports
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const MaskData = require("maskdata");
 
 require("dotenv").config({ path: "./config/.env" });
 
@@ -59,9 +60,11 @@ exports.signup = (req, res, next) => {
 				bcrypt
 					.hash(req.body.password, 10)
 					.then((hash) => {
+						const maskedEmail = MaskData.maskEmail2(req.body.email);
+
 						const user = db.User.build({
 							username: req.body.username,
-							email: email,
+							email: maskedEmail,
 							password: hash,
 							isAdmin: 0,
 						});
@@ -87,8 +90,9 @@ exports.signup = (req, res, next) => {
 
 // Permet à un utilisateur de se connecter
 exports.login = (req, res, next) => {
+	const maskedEmail = MaskData.maskEmail2(req.body.email);
 	db.User.findOne({
-		where: { email: req.body.email },
+		where: { email: maskedEmail },
 	})
 		.then((user) => {
 			if (user) {
