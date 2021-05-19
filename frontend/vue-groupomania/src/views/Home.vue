@@ -1,34 +1,32 @@
 <template>
-	<div class="img1">
-		<div class="home">
-			<img class="home__title" src="../assets/iconLong450.png" alt="Logo de Groupomania" />
+	<div class="home">
+		<img class="home__title" src="../assets/iconLong450.png" alt="Logo de Groupomania" />
 
-			<div class="home__display">
-				<form @submit.prevent="login" class="home__display__form">
-					<h1 class="home__display__form__title">Se connecter</h1>
+		<div class="home__display">
+			<form @submit.prevent="login" class="home__display__form">
+				<h1 class="home__display__form__title">Se connecter</h1>
 
-					<div class="home__display__form__input">
-						<label for="mail" class="home__display__form__input__label">Email</label>
-						<input type="email" v-model="email" id="mail" name="mail" />
-					</div>
+				<div class="home__display__form__input">
+					<label for="mail" class="home__display__form__input__label">Email</label>
+					<input type="email" v-model="email" id="mail" name="mail" />
+				</div>
 
-					<div class="home__display__form__input">
-						<label for="password" class="home__display__form__input__label"
-							>Mot de passe</label
-						>
-						<input type="password" v-model="password" id="password" name="password" />
-					</div>
+				<div class="home__display__form__input">
+					<label for="password" class="home__display__form__input__label"
+						>Mot de passe</label
+					>
+					<input type="password" v-model="password" id="password" name="password" />
+				</div>
 
-					<button class="home__display__form__button">Connexion</button>
+				<button class="home__display__form__button">Connexion</button>
 
-					<p>
-						Vous n'avez pas encore de compte ?
-						<router-link to="/signup" class="home__display__form__signup"
-							>S'inscrire</router-link
-						>
-					</p>
-				</form>
-			</div>
+				<p>
+					Vous n'avez pas encore de compte ?
+					<router-link to="/signup" class="home__display__form__signup"
+						>S'inscrire</router-link
+					>
+				</p>
+			</form>
 		</div>
 	</div>
 </template>

@@ -104,7 +104,6 @@
 						>
 							<textarea
 								v-model="contentmodifyPost"
-								:placeholder="post.content"
 								id="textarea"
 								class="displayPost__item__publication__text__modifyText__textarea"
 								aria-label="Modifier le message"
@@ -546,12 +545,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.bg {
-	background: rgb(228, 225, 225);
-	background-repeat: repeat;
-	background-size: cover, contain;
-	height: 100vh;
-}
 .post {
 	background-color: #c7c7c7;
 }
