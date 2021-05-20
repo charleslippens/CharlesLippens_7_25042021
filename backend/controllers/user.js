@@ -48,7 +48,7 @@ exports.signup = (req, res, next) => {
 
 	// Permet de vérifier que l'utilisateur que l'on souhaite créer n'existe pas déjà
 	db.User.findOne({
-		attributes: ["username" || "email"],
+		attributes: ["username", "email"],
 		where: {
 			username: username,
 			email: email,
@@ -70,7 +70,7 @@ exports.signup = (req, res, next) => {
 								res.status(201).json({ message: "Votre compte a bien été créé !" })
 							)
 							.catch((error) =>
-								res.status(400).json({ error: "Oops, une erreur s'est produite !" })
+								res.status(400).json({ error: "Cet utilisateur existe déjà !" })
 							);
 					})
 					.catch((error) =>
@@ -82,7 +82,7 @@ exports.signup = (req, res, next) => {
 				return res.status(404).json({ error: "Cet utilisateur existe déjà" });
 			}
 		})
-		.catch((error) => res.status(500).json({ error: "Oops, une erreur s'est produite !" }));
+		.catch((error) => res.status(500).json({ error: "Oopsa, une erreur s'est produite !" }));
 };
 
 // Permet à un utilisateur de se connecter
