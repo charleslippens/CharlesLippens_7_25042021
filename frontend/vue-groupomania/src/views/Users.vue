@@ -4,12 +4,13 @@
 		<div class="bg">
 			<div class="field">
 				<div class="content">
-					<h3>Groupomania Users</h3>
+					<h1>Groupomania Users</h1>
 					<hr />
 
 					<div class="card" v-for="user in users" :key="user.id">
+						<span class="title font-weight-bold">ID : {{ user.id }}</span>
+						<span class="title font-weight-bold">Pseudo : {{ user.username }}</span>
 						<p class="title font-weight-bold">Créé le :{{ user.createdAt }}</p>
-						<span class="title font-weight-bold">username : {{ user.username }}</span>
 						<p class="title font-weight-bold">Email : {{ user.email }}</p>
 						<button class="users-list_delete-link" @click="deleteUser(user.id)">
 							<i class="far fa-trash-alt"></i>Supprimer
@@ -75,9 +76,6 @@ export default {
 					this.notyf.error(msgerror.error);
 				});
 		},
-		displayModale() {
-			this.revele = !this.revele;
-		},
 
 		displayProfile() {
 			const userId = localStorage.getItem("userId");
@@ -125,10 +123,6 @@ h2 {
 	margin-top: 2rem;
 }
 
-h3 {
-	font-size: 1.9em;
-	color: black;
-}
 .content {
 	display: flex;
 	flex-direction: column;
@@ -136,7 +130,6 @@ h3 {
 	min-width: 40%;
 	max-width: 60%;
 	margin: 3rem auto;
-	background: #c7c7c7;
 	border-radius: 25px;
 	@media (max-width: 500px) {
 		min-width: 80%;

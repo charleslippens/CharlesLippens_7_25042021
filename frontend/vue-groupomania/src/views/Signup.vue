@@ -1,7 +1,7 @@
 <template>
 	<div class="img1">
 		<div class="home">
-			<img class="home__title" src="../assets/iconLong450.png" alt="Logo de Groupomania" />
+			<img class="home__title" src="../assets/iconLeong450.png" alt="Logo de Groupomania" />
 
 			<div class="home__display">
 				<form @submit.prevent="signup" class="home__display__form">
@@ -88,13 +88,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.img1 {
-	background-image: url("../assets/business.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-size: cover, contain;
-	height: 100vh;
-}
 .home {
 	&__title {
 		@media (max-width: 930px) {

@@ -1,6 +1,6 @@
 <template>
 	<div class="home">
-		<img class="home__title" src="../assets/iconLong450.png" alt="Logo de Groupomania" />
+		<img class="home__title" src="../assets/iconLeong450.png" alt="Logo de Groupomania" />
 
 		<div class="home__display">
 			<form @submit.prevent="login" class="home__display__form">
@@ -54,7 +54,7 @@ export default {
 		});
 	},
 	methods: {
-		// Permet de se connecter et de recharger la page sans que l'utilisateur soit déconnecté
+		// se connecter et de recharger la page sans que l'utilisateur soit déconnecté
 		login() {
 			axios
 				.post("http://localhost:3000/api/user/login", {

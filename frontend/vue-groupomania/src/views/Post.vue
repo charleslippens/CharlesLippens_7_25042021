@@ -17,6 +17,7 @@
 				<form @submit.prevent="createPost" aria-label="Nouveau message">
 					<div class="newPost__content">
 						<textarea
+							maxlength="120"
 							v-model="content"
 							class="newPost__content__text"
 							name="message"
@@ -103,6 +104,7 @@
 							class="displayPost__item__publication__text__modifyText"
 						>
 							<textarea
+								maxlength="120"
 								v-model="contentmodifyPost"
 								id="textarea"
 								class="displayPost__item__publication__text__modifyText__textarea"
@@ -252,6 +254,7 @@
 							class="displayComment__newComment__form"
 						>
 							<textarea
+								maxlength="120"
 								v-model="contentComment"
 								class="displayComment__newComment__form__text"
 								name="comment"
@@ -370,14 +373,14 @@ export default {
 				});
 		},
 
-		// Permet d'afficher la date de publication au bon format
+		// afficher la date de publication au bon format
 		dateFormat(date) {
 			if (date) {
 				return moment(String(date)).format("DD/MM/YYYY");
 			}
 		},
 
-		// Permet d'afficher le champ pour modifier un message
+		// afficher le champ pour modifier un message
 		displayModifyPost(id) {
 			const postId = id;
 
