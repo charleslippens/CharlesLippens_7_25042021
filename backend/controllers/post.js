@@ -23,11 +23,11 @@ exports.createPost = (req, res, next) => {
 		return res.status(400).json({ error: "Le champ texte doit être renseigné" });
 	}
 
-	// Vérifie que le champ texte a au moins 4 caractères
-	if (content.length <= 4) {
+	// Vérifie que la longueur du champ texte
+	if (content.length < 5 || content.length > 200) {
 		return res
 			.status(400)
-			.json({ error: "Le contenu du message doit contenir au moins 5 caractères" });
+			.json({ error: "Le contenu du message doit contenir entre 5 et 200 caractères" });
 	}
 
 	// Crée le message dans la BD Post

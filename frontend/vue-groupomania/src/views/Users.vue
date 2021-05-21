@@ -3,14 +3,15 @@
 		<Nav />
 		<div class="bg">
 			<div class="field">
+				<h1>Groupomania Users</h1>
+				<hr />
 				<div class="content">
-					<h1>Groupomania Users</h1>
-					<hr />
-
-					<div class="card" v-for="user in users" :key="user.id">
-						<span class="title font-weight-bold">ID : {{ user.id }}</span>
-						<span class="title font-weight-bold">Pseudo : {{ user.username }}</span>
-						<p class="title font-weight-bold">Créé le :{{ user.createdAt }}</p>
+					<div class="test" v-for="user in users" :key="user.id">
+						<p class="title font-weight-bold">ID : {{ user.id }}</p>
+						<p class="title font-weight-bold">Pseudo : {{ user.username }}</p>
+						<p class="title font-weight-bold">
+							Créé le : {{ dateFormat(user.createdAt) }}
+						</p>
 						<p class="title font-weight-bold">Email : {{ user.email }}</p>
 						<button class="users-list_delete-link" @click="deleteUser(user.id)">
 							<i class="far fa-trash-alt"></i>Supprimer
@@ -26,7 +27,7 @@
 <script>
 import axios from "axios";
 import { Notyf } from "notyf";
-
+import moment from "moment";
 import "notyf/notyf.min.css";
 
 import Nav from "@/components/Nav.vue";
@@ -45,7 +46,6 @@ export default {
 		};
 	},
 	created() {
-		this.displayProfile();
 		this.displayUser();
 
 		this.notyf = new Notyf({
@@ -77,23 +77,11 @@ export default {
 				});
 		},
 
-		displayProfile() {
-			const userId = localStorage.getItem("userId");
-
-			axios
-				.get("http://localhost:3000/api/user/" + userId, {
-					headers: {
-						Authorization: "Bearer " + localStorage.getItem("token"),
-					},
-				})
-				.then((response) => {
-					this.user = response.data;
-					localStorage.setItem("imageProfile", response.data.imageProfile);
-				})
-				.catch((error) => {
-					const msgerror = error.response.data;
-					this.notyf.error(msgerror.error);
-				});
+		// afficher la date de publication au bon format
+		dateFormat(date) {
+			if (date) {
+				return moment(String(date)).format("DD/MM/YYYY");
+			}
 		},
 
 		displayUser() {
@@ -122,15 +110,25 @@ h1,
 h2 {
 	margin-top: 2rem;
 }
+.test {
+	border: solid;
+	border-radius: 5px;
+	background-color: white;
+	padding: 10px;
+	margin: 0px 10px 10px 0px;
+}
 
 .content {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
 	align-items: center;
 	min-width: 40%;
-	max-width: 60%;
+	max-width: 80%;
 	margin: 3rem auto;
 	border-radius: 25px;
+
 	@media (max-width: 500px) {
 		min-width: 80%;
 	}

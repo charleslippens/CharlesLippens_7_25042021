@@ -30,7 +30,7 @@ exports.signup = (req, res, next) => {
 	}
 
 	// Permet de contrôler la longueur du pseudo
-	if (username.length <= 3 || username.length >= 15) {
+	if (username.length < 3 || username.length > 15) {
 		return res.status(400).json({ error: "Le pseudo doit contenir 3 à 15 caractères" });
 	}
 
