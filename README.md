@@ -10,6 +10,7 @@ Clonez ce repository,
 Ouvrir le fichier .env dans backend en remplaçant les valeurs par défaut pour accéder à la BDD:
 
 DATABASE_URL="mysql://username:password@localhost:port/database_name"
+
 PORT=3000
 
 #JWT APP
