@@ -25,6 +25,7 @@ Le serveur doit fonctionner sur localhost avec le port par défaut 3000.
 ### Importer les tables dans la base de données :
 
 Créer la base de données dans MySQL,
+
 Exécutez sequelize db:migrate pour intégrer les modèles créés dans la base de données ;
 
 -   si sequelize et mysql2 ne sont pas installés localement faire ceci:
