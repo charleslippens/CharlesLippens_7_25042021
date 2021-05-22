@@ -14,7 +14,7 @@ Ouvrir le fichier .env dans backend en remplaçant les valeurs par défaut pour 
 
 DATABASE_URL="mysql://username:password@localhost:port/database_name"
 
-ou username est le nom d'utilisateur pour la BDD, le password est le password pour la BDD, le port est le port indiqué pour se connecter à la BDD en local, et database_name est le nom de la base de donnée créée (exemple de nom: groupomania)
+ou username est le nom d'utilisateur pour la BDD, password est le password pour la BDD, port est le port indiqué pour se connecter à la BDD en local, et database_name est le nom de la base de donnée créée (exemple de nom: groupomania)
 
 PORT=3000
 
