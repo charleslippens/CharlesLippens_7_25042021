@@ -26,11 +26,6 @@ module.exports = {
 			imagePost: {
 				type: Sequelize.STRING,
 			},
-			likes: {
-				type: Sequelize.INTEGER,
-				allowNull: false,
-				defaultValue: 0,
-			},
 			createdAt: {
 				allowNull: false,
 				type: Sequelize.DATE,

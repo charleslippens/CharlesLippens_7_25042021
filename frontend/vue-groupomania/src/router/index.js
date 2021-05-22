@@ -1,7 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import auth from "../middleware/auth";
-const isAdmin = localStorage.getItem("isAdmin");
 import VueRouteMiddleware from "vue-route-middleware";
 
 const routes = [
@@ -48,7 +47,7 @@ const routes = [
 		name: "Users",
 		component: () => import(/* webpackChunkName: "about" */ "../views/Users.vue"),
 		beforeEnter: (to, from, next) => {
-			if (isAdmin == "true") {
+			if (localStorage.getItem("isAdmin")) {
 				return next();
 			}
 			return next("/post");
