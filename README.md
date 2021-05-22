@@ -8,13 +8,13 @@ Avoir Node.js, Vue CLI et MySQL installés localement sur la machine.
 
 Clonez ce repository,
 
-Créér la BDD dans Mysql (exemple de nom: groupomania
+Créér la BDD dans Mysql (exemple de nom: groupomania)
 
 Ouvrir le fichier .env dans backend en remplaçant les valeurs par défaut pour accéder à la BDD:
 
 DATABASE_URL="mysql://username:password@localhost:port/database_name"
 
-ou username est le nom d'utilisateur pour la BDD, le password est le pass pour la BDD, le port est le port idniqué pour ce connecté à la BDD en local, et database_name est le nom de la base de donnée créée
+ou username est le nom d'utilisateur pour la BDD, le password est le password pour la BDD, le port est le port indiqué pour se connecter à la BDD en local, et database_name est le nom de la base de donnée créée (exemple de nom: groupomania)
 
 PORT=3000
 
