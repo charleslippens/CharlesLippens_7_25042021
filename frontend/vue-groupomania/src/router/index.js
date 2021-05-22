@@ -47,7 +47,7 @@ const routes = [
 		name: "Users",
 		component: () => import(/* webpackChunkName: "about" */ "../views/Users.vue"),
 		beforeEnter: (to, from, next) => {
-			if (localStorage.getItem("isAdmin")) {
+			if (localStorage.getItem("isAdmin") == "true") {
 				return next();
 			}
 			return next("/post");
