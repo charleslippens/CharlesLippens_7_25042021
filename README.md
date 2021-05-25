@@ -12,7 +12,7 @@ Ouvrir le fichier .env dans backend en remplaçant les valeurs par défaut pour 
 
 DATABASE_URL="mysql://username:password@localhost:port/database_name"
 
-ou username est le nom d'utilisateur pour la BDD, le password est le pass pour la BDD, le port est le port idniqué pour ce connecté à la BDD en local, et database_name est le nom de la base de donnée à créer dans MySQL au préalable.
+ou username est le nom d'utilisateur pour la BDD, le password est le pass pour la BDD, le port est le port idniqué pour ce connecté à la BDD en local, et database_name est le nom de la base de donnée à créer dans MySQL au préalable (exemple de nom: groupomania)
 
 PORT=3000
 
@@ -24,7 +24,7 @@ Le serveur doit fonctionner sur localhost avec le port par défaut 3000.
 
 ### Importer les tables dans la base de données :
 
-Créer la base de données dans MySQL,
+Créer la base de données dans MySQL (exemple de nom: groupomania)
 
 Exécutez sequelize db:migrate pour intégrer les modèles créés dans la base de données ;
 

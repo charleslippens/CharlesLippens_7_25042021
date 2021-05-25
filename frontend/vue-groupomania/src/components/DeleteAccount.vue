@@ -25,6 +25,7 @@
 import axios from "axios";
 import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
+import jwtDecode from 'jwt-decode';
 
 export default {
 	name: "DeleteAccount",
@@ -41,8 +42,10 @@ export default {
 	methods: {
 		// Permet de supprimer le compte
 		deleteAccount() {
-			const userId = localStorage.getItem("userId");
-
+			const tokenRecup = localStorage.getItem("token");
+			const decodeToken = jwtDecode(tokenRecup);
+			const userId = decodeToken.userId
+			
 			axios
 				.delete("http://localhost:3000/api/user/" + userId, {
 					headers: {

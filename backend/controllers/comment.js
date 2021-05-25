@@ -51,7 +51,6 @@ exports.getAllComments = (req, res, next) => {
 		.then((commentFound) => {
 			if (commentFound) {
 				res.status(200).json(commentFound);
-				console.log(commentFound);
 			} else {
 				res.status(404).json({ error: "Aucun commentaire trouvé" });
 			}

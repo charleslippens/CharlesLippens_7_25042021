@@ -30,11 +30,6 @@ export default {
 		logout() {
 			// Permet de se déconnecter
 			localStorage.removeItem("token");
-			localStorage.removeItem("userId");
-			localStorage.removeItem("username");
-			localStorage.removeItem("isAdmin");
-			localStorage.removeItem("imageProfile");
-
 			this.$router.push("http://localhost:8080/");
 		},
 	},

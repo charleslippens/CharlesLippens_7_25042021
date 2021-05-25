@@ -42,9 +42,10 @@
 </template>
 
 <script>
-import axios from "axios";
 
+import axios from "axios";
 import Logout from "@/components/Logout.vue";
+import jwtDecode from 'jwt-decode';
 
 export default {
 	name: "Navbar",
@@ -63,7 +64,9 @@ export default {
 	},
 	methods: {
 		displayAdmin(){
-			const userId = localStorage.getItem("userId");
+			const tokenRecup = localStorage.getItem("token");
+			const decodeToken = jwtDecode(tokenRecup);
+			const userId = decodeToken.userId
 
 			axios
 				.get("http://localhost:3000/api/user/" + userId, {
@@ -73,8 +76,7 @@ export default {
 				})
 				.then((response) => {
 					this.user = response.data;
-					console.log(this.user);
-					localStorage.setItem("imageProfile", response.data.imageProfile);
+					//localStorage.setItem("imageProfile", response.data.imageProfile);
 				})
 				.catch((error) => {
 					const msgerror = error.response.data;

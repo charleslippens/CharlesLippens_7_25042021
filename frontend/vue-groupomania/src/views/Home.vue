@@ -63,11 +63,6 @@ export default {
 				})
 				.then((response) => {
 					localStorage.setItem("token", response.data.token);
-					localStorage.setItem("userId", response.data.userId);
-					localStorage.setItem("username", response.data.username);
-					localStorage.setItem("isAdmin", response.data.isAdmin);
-					localStorage.setItem("imageProfile", response.data.imageProfile);
-
 					this.$router.push("post");
 				})
 				.catch((error) => {

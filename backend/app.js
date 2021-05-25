@@ -28,8 +28,10 @@ const commentRoutes = require("./routes/comment");
 const adminRoutes = require("./routes/admin");
 
 // Transforme le corps de la requête en objet JS
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Permet de configurer les en-têtes HTTP de manière sécurisée
 app.use(helmet());

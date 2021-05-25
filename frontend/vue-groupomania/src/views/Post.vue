@@ -182,14 +182,14 @@
 						</div>
 
 						<i
-							v-if="userId == post.UserId || isAdmin == 'true'"
+							v-if="userId == post.UserId || isAdmin == true"
 							@click="displayModifyPost(post.id)"
 							class="displayPost__item__option__button far fa-edit"
 							aria-label="Modifier le message"
 						></i>
 
 						<i
-							v-if="userId == post.UserId || isAdmin == 'true'"
+							v-if="userId == post.UserId || isAdmin == true"
 							v-on:click="deletePost(post.id)"
 							class="displayPost__item__option__button far fa-trash-alt"
 							aria-label="Supprimer le message"
@@ -235,7 +235,7 @@
 
 							<div class="displayPost__item__option">
 								<i
-									v-if="userId == comment.UserId || isAdmin == 'true'"
+									v-if="userId == comment.UserId || isAdmin == true"
 									@click="deleteComment(comment.id)"
 									class="displayPost__item__option__button far fa-trash-alt"
 								></i>
@@ -285,7 +285,7 @@ import axios from "axios";
 import moment from "moment";
 import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
-
+import jwtDecode from 'jwt-decode';
 import Nav from "@/components/Nav.vue";
 import ProfileImage from "../components/ProfileImage.vue";
 
@@ -296,11 +296,17 @@ export default {
 		ProfileImage,
 	},
 	data() {
+		const tokenRecup = localStorage.getItem("token");
+		const decodeToken = jwtDecode(tokenRecup);
+		const userIdToken = decodeToken.userId;
+		const isAdminToken = decodeToken.isAdmin;
+		const imageProfileToken = decodeToken.imageProfile;
+
 		return {
-			userId: localStorage.getItem("userId"),
-			username: localStorage.getItem("username"),
-			isAdmin: localStorage.getItem("isAdmin"),
-			imageProfile: localStorage.getItem("imageProfile"),
+			userId: userIdToken,
+			username: "",
+			isAdmin: isAdminToken,
+			imageProfile: imageProfileToken,
 			posts: [],
 			post: "",
 			imagePost: "",
@@ -357,6 +363,24 @@ export default {
 
 		// Permet d'afficher tous les messages
 		displayPost() {
+			const tokenRecup = localStorage.getItem("token");
+			const decodeToken = jwtDecode(tokenRecup);
+			const userId = decodeToken.userId;
+
+			axios
+				.get("http://localhost:3000/api/user/" + userId, {
+					headers: {
+						Authorization: "Bearer " + localStorage.getItem("token"),
+					},
+				})
+				.then((response) => {
+					this.imageProfile = response.data.imageProfile;
+				})
+				.catch((error) => {
+					const msgerror = error.response.data;
+					this.notyf.error(msgerror.error);
+				});
+
 			axios
 				.get("http://localhost:3000/api/post", {
 					headers: {
@@ -383,15 +407,12 @@ export default {
 		// afficher le champ pour modifier un message
 		displayModifyPost(id) {
 			const postId = id;
-
 			this.showInputModify == false;
 
 			let input = document.querySelector('div[inputId="' + id + '"]');
 			let inputId = input.getAttribute("inputId");
-
 			let contentPost = document.querySelector('p[contentPostId="' + id + '"]');
 			let contentPostId = contentPost.getAttribute("contentPostId");
-
 			let imgPreviewCreatePost = document.querySelector("#preview");
 
 			if (postId == inputId && postId == contentPostId && this.showInputModify == false) {
@@ -399,10 +420,8 @@ export default {
 				contentPost.style.display = "none";
 				imgPreviewCreatePost.style.display = "none";
 				this.showInputModify = !this.showInputModify;
-
 				let imgPost = document.querySelector('img[imgPostId="' + id + '"]');
 				let imgPostId = imgPost.getAttribute("imgPostId");
-
 				if (postId == imgPostId) {
 					imgPost.style.display = "none";
 				}
@@ -418,7 +437,6 @@ export default {
 		// Permet de modifier un message
 		modifyPost(id) {
 			const postId = id;
-
 			const formData = new FormData();
 			formData.append("content", this.contentmodifyPost);
 			formData.append("image", this.imagePost);
@@ -462,9 +480,7 @@ export default {
 		// Permet d'afficher le champ pour créer un nouveau commentaire
 		diplayCreateComment(id) {
 			const postId = id;
-
 			this.showCreateComment == false;
-
 			let form = document.querySelector('div[formId="' + id + '"]');
 			let formId = form.getAttribute("formId");
 
@@ -505,7 +521,6 @@ export default {
 		// Permet d'afficher les commentaires d'un message
 		displayComment(id) {
 			this.showComment = !this.showComment;
-
 			const postId = id;
 
 			axios

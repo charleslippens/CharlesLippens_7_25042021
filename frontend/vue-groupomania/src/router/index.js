@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import auth from "../middleware/auth";
 import VueRouteMiddleware from "vue-route-middleware";
+import jwtDecode from 'jwt-decode';
 
 const routes = [
 	{
@@ -47,7 +48,10 @@ const routes = [
 		name: "Users",
 		component: () => import(/* webpackChunkName: "about" */ "../views/Users.vue"),
 		beforeEnter: (to, from, next) => {
-			if (localStorage.getItem("isAdmin") == "true") {
+			const tokenRecup = localStorage.getItem("token");
+			const decodeToken = jwtDecode(tokenRecup);
+			const isAdmin = decodeToken.isAdmin;
+			if (isAdmin == true) {
 				return next();
 			}
 			return next("/post");

@@ -59,6 +59,8 @@ import "notyf/notyf.min.css";
 import Nav from "@/components/Nav.vue";
 import DeleteAccount from "@/components/DeleteAccount.vue";
 import ProfileImage from "../components/ProfileImage.vue";
+import jwtDecode from 'jwt-decode';
+
 
 export default {
 	name: "Profile",
@@ -87,7 +89,9 @@ export default {
 	methods: {
 		// Permet d'afficher les informations de profil
 		displayProfile() {
-			const userId = localStorage.getItem("userId");
+			const tokenrecup = localStorage.getItem("token");
+			const decodetoken = jwtDecode(tokenrecup);
+			const userId = decodetoken.userId;
 
 			axios
 				.get("http://localhost:3000/api/user/" + userId, {
@@ -97,7 +101,6 @@ export default {
 				})
 				.then((response) => {
 					this.user = response.data;
-					localStorage.setItem("imageProfile", response.data.imageProfile);
 				})
 				.catch((error) => {
 					const msgerror = error.response.data;
@@ -113,8 +116,9 @@ export default {
 			this.imageProfile = event.target.files[0];
 		},
 		modifyProfile() {
-			const userId = localStorage.getItem("userId");
-
+			const tokenrecup = localStorage.getItem("token");
+			const decodetoken = jwtDecode(tokenrecup);
+			const userId = decodetoken.userId
 			const formData = new FormData();
 			formData.append("image", this.imageProfile);
 

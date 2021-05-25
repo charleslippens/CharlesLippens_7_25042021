@@ -91,8 +91,6 @@ export default {
 				})
 				.then((response) => {
 					this.users = response.data.users;
-					console.log("this.user:", this.users);
-					console.log("this.user:", this.user);
 				})
 				.catch((err) => console.log(err));
 		},

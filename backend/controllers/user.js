@@ -103,7 +103,7 @@ exports.login = (req, res, next) => {
 							isAdmin: user.isAdmin,
 							username: user.username,
 							imageProfile: user.imageProfile,
-							token: jwt.sign({ userId: user.id }, process.env.JWT_SECRET_TOKEN, {
+							token: jwt.sign({ userId:user.id, isAdmin:user.isAdmin, imageProfile:user.imageProfile }, process.env.JWT_SECRET_TOKEN, {
 								expiresIn: "24h",
 							}),
 						});
@@ -145,7 +145,6 @@ exports.modifyUserProfile = (req, res, next) => {
 
 	req.body.user = userId;
 
-	console.log("bodyUser", req.body.user);
 	const userObject = req.file
 		? {
 				...JSON.parse(req.body.user),
